@@ -1,4 +1,4 @@
-package com.cloud.disk.adapter;
+package com.cloud.disk.app.adapter;
 
 import android.content.Context;
 

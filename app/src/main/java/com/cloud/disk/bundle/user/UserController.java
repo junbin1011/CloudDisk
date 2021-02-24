@@ -1,9 +1,8 @@
-package com.cloud.disk.controller;
+package com.cloud.disk.bundle.user;
 
-import com.cloud.disk.callback.CallBack;
-import com.cloud.disk.model.UserInfo;
-import com.cloud.disk.util.HttpUtils;
-import com.cloud.disk.util.LogUtils;
+import com.cloud.disk.library.http.callback.CallBack;
+import com.cloud.disk.library.http.HttpUtils;
+import com.cloud.disk.library.log.LogUtils;
 
 public class UserController {
     public static boolean isLogin = false;

@@ -1,4 +1,4 @@
-package com.cloud.disk.model;
+package com.cloud.disk.bundle.dynamic;
 
 public class Dynamic {
     public String id;

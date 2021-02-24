@@ -1,4 +1,4 @@
-package com.cloud.disk.ui;
+package com.cloud.disk.bundle.dynamic;
 
 import android.os.Bundle;
 
@@ -10,10 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.cloud.disk.R;
-import com.cloud.disk.controller.DynamicController;
-import com.cloud.disk.controller.FileController;
-import com.cloud.disk.model.Dynamic;
-import com.cloud.disk.model.FileInfo;
+import com.cloud.disk.bundle.file.FileController;
+import com.cloud.disk.bundle.file.FileInfo;
 
 
 public class DynamicFragment extends Fragment {

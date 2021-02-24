@@ -1,12 +1,12 @@
-package com.cloud.disk.ui;
+package com.cloud.disk.platform.login;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cloud.disk.R;
-import com.cloud.disk.callback.CallBack;
-import com.cloud.disk.controller.UserController;
+import com.cloud.disk.library.http.callback.CallBack;
+import com.cloud.disk.bundle.user.UserController;
 
 
 public class LoginActivity extends AppCompatActivity {

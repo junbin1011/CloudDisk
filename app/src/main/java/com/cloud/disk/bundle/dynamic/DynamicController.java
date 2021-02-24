@@ -1,9 +1,10 @@
-package com.cloud.disk.controller;
+package com.cloud.disk.bundle.dynamic;
 
 
-import com.cloud.disk.model.Dynamic;
-import com.cloud.disk.model.FileInfo;
-import com.cloud.disk.util.HttpUtils;
+import com.cloud.disk.bundle.file.FileController;
+import com.cloud.disk.bundle.user.UserController;
+import com.cloud.disk.bundle.file.FileInfo;
+import com.cloud.disk.library.http.HttpUtils;
 
 import java.util.ArrayList;
 import java.util.List;

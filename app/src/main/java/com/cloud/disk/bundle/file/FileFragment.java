@@ -1,4 +1,4 @@
-package com.cloud.disk.ui;
+package com.cloud.disk.bundle.file;
 
 import android.os.Bundle;
 
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cloud.disk.R;
-import com.cloud.disk.controller.FileController;
 
 
 public class FileFragment extends Fragment {

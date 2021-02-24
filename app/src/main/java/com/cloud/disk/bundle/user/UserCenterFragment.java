@@ -1,4 +1,4 @@
-package com.cloud.disk.ui;
+package com.cloud.disk.bundle.user;
 
 import android.os.Bundle;
 
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.cloud.disk.R;
-import com.cloud.disk.controller.UserController;
 
 
 public class UserCenterFragment extends Fragment {

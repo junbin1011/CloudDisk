@@ -1,4 +1,4 @@
-package com.cloud.disk.ui;
+package com.cloud.disk.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,8 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.cloud.disk.R;
-import com.cloud.disk.adapter.SectionsPagerAdapter;
-import com.cloud.disk.controller.UserController;
+import com.cloud.disk.app.adapter.SectionsPagerAdapter;
+import com.cloud.disk.bundle.user.UserController;
+import com.cloud.disk.bundle.dynamic.DynamicFragment;
+import com.cloud.disk.bundle.file.FileFragment;
+import com.cloud.disk.platform.login.LoginActivity;
+import com.cloud.disk.bundle.user.UserCenterFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -34,15 +38,12 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (UserController.isLogin) {
-                    return;
-                }
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
+        fab.setOnClickListener(view -> {
+        if (UserController.isLogin) {
+                return;
             }
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         });
     }
 }

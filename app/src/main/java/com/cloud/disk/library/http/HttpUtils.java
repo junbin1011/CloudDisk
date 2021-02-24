@@ -1,6 +1,6 @@
-package com.cloud.disk.util;
+package com.cloud.disk.library.http;
 
-import com.cloud.disk.controller.UserController;
+import com.cloud.disk.bundle.user.UserController;
 
 public class HttpUtils {
     public static void post(String url) {

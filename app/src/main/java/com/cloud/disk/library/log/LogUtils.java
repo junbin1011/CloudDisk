@@ -1,4 +1,4 @@
-package com.cloud.disk.util;
+package com.cloud.disk.library.log;
 
 public class LogUtils {
     public static void log(String log) {
