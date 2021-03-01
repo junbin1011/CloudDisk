@@ -1,3 +1,5 @@
 include ':app'
 include ':library'
+include ':api'
+include ':fileBundle'
 rootProject.name = "CloudDisk"

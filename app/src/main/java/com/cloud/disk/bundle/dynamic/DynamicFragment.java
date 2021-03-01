@@ -12,12 +12,13 @@ import android.widget.Button;
 import com.cloud.disk.R;
 import com.cloud.disk.bundle.file.FileController;
 import com.cloud.disk.bundle.file.FileInfo;
+import com.cloud.disk.bundle.user.UserStateImpl;
 
 
 public class DynamicFragment extends Fragment {
 
     DynamicController dynamicController = new DynamicController();
-    FileController fileController = new FileController();
+    FileController fileController = new FileController(new UserStateImpl());
     Button btnShare;
     public static DynamicFragment newInstance() {
         DynamicFragment fragment = new DynamicFragment();

@@ -45,6 +45,8 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 
     implementation project(':library')
+    implementation project(':api')
+    implementation project(':fileBundle')
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation "com.google.truth:truth:1.0.1"

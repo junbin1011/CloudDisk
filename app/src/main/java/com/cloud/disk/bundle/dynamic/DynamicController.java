@@ -2,6 +2,7 @@ package com.cloud.disk.bundle.dynamic;
 
 
 import com.cloud.disk.bundle.file.FileController;
+import com.cloud.disk.bundle.user.UserStateImpl;
 import com.cloud.disk.bundle.user.UserController;
 import com.cloud.disk.bundle.file.FileInfo;
 import com.cloud.disk.library.http.HttpUtils;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class DynamicController {
 
-    FileController fileController=new FileController();
+    FileController fileController=new FileController(new UserStateImpl());
 
     public boolean post(Dynamic dynamic, FileInfo fileInfo) {
         //发送一条动态消息
