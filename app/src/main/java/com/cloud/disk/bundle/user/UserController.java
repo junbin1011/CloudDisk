@@ -11,7 +11,7 @@ public class UserController {
     public boolean login(String id, String password, CallBack callBack) {
         //用户登录
         LogUtils.log("login...");
-        HttpUtils.post("http://login");
+        HttpUtils.post("http://login", userId);
         callBack.success("");
         return true;
     }

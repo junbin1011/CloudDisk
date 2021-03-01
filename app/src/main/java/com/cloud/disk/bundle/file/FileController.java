@@ -15,7 +15,7 @@ public class FileController {
     public FileInfo upload(String path) {
         //上传文件
         LogUtils.log("upload file");
-        HttpUtils.post("http://file");
+        HttpUtils.post("http://file", UserController.userId);
         return new FileInfo();
     }
 

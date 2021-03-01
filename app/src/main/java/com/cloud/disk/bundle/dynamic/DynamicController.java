@@ -18,7 +18,7 @@ public class DynamicController {
         if (!UserController.isLogin) {
             return false;
         }
-        HttpUtils.post("http://dynamic");
+        HttpUtils.post("http://dynamic", UserController.userId);
         return true;
     }
 
