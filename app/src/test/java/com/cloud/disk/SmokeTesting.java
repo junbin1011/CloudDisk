@@ -1,3 +1,5 @@
+package com.cloud.disk;
+
 import androidx.fragment.app.Fragment;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.intent.Intents;
@@ -12,10 +14,18 @@ import com.cloud.disk.bundle.dynamic.DynamicFragment;
 import com.cloud.disk.bundle.file.FileFragment;
 import com.cloud.disk.bundle.user.UserCenterFragment;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.annotation.Config;
 
 import java.util.List;
+
+import dagger.hilt.android.testing.HiltAndroidRule;
+import dagger.hilt.android.testing.HiltAndroidTest;
+import dagger.hilt.android.testing.HiltTestApplication;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -30,7 +40,11 @@ import static com.google.common.truth.Truth.assertThat;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
+@HiltAndroidTest
+@Config(application = HiltTestApplication.class)
 public class SmokeTesting {
+    @Rule
+    public HiltAndroidRule hiltRule = new HiltAndroidRule(this);
 
     @Test
     public void should_show_fragment_list_when_activity_launch() {

@@ -7,9 +7,12 @@ import com.cloud.disk.library.log.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class FileController {
     private final UserState mUserState;
 
+    @Inject
     public FileController(UserState userState) {
         this.mUserState = userState;
     }

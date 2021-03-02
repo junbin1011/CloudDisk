@@ -8,20 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cloud.disk.bundle.user.UserState;
 import com.cloud.filebundle.R;
 
+import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class FileFragment extends Fragment {
 
+    @Inject
     FileController fileController;
 
-    public FileFragment(UserState userState) {
-        fileController = new FileController(userState);
-    }
-
-    public static FileFragment newInstance(UserState userState) {
-        FileFragment fragment = new FileFragment(userState);
+    public static FileFragment newInstance() {
+        FileFragment fragment = new FileFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
