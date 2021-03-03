@@ -7,11 +7,11 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.cloud.disk.R;
 import com.cloud.disk.app.adapter.SectionsPagerAdapter;
 import com.cloud.disk.bundle.user.UserController;
 import com.cloud.disk.bundle.dynamic.DynamicFragment;
-import com.cloud.disk.bundle.file.FileFragment;
 import com.cloud.disk.platform.login.LoginActivity;
 import com.cloud.disk.bundle.user.UserCenterFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(FileFragment.newInstance());
+        fragments.add((Fragment) ARouter.getInstance().build("/bundle/file").navigation());
         fragments.add(DynamicFragment.newInstance());
         fragments.add(UserCenterFragment.newInstance());
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), fragments);
@@ -41,11 +41,12 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(view -> {
-        if (UserController.isLogin) {
+            if (UserController.isLogin) {
                 return;
             }
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         });
     }
+
 }

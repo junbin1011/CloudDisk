@@ -2,20 +2,20 @@ package com.cloud.disk;
 
 import androidx.fragment.app.Fragment;
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.intent.matcher.IntentMatchers;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import com.cloud.disk.R;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.cloud.disk.app.MainActivity;
 import com.cloud.disk.bundle.dynamic.DynamicFragment;
 import com.cloud.disk.bundle.file.FileFragment;
 import com.cloud.disk.bundle.user.UserCenterFragment;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,10 +41,15 @@ import static com.google.common.truth.Truth.assertThat;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 @HiltAndroidTest
-@Config(application = HiltTestApplication.class)
+@Config(application = HiltTestApplication.class, shadows = {ShadowPostCard.class})
 public class SmokeTesting {
     @Rule
     public HiltAndroidRule hiltRule = new HiltAndroidRule(this);
+
+    @Before
+    public void before() {
+        ARouter.init(ApplicationProvider.getApplicationContext());
+    }
 
     @Test
     public void should_show_fragment_list_when_activity_launch() {
