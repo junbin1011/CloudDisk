@@ -65,6 +65,7 @@ dependencies {
 
     implementation project(':library')
     implementation project(':api')
+    implementation project(':platform')
     implementation project(':fileBundle')
 
     testImplementation 'junit:junit:4.13.2'

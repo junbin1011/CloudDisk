@@ -1,5 +1,7 @@
 package com.cloud.disk.bundle.user;
 
+import com.cloud.disk.platform.login.LoginController;
+
 import javax.inject.Inject;
 
 public class UserStateImpl implements UserState {
@@ -10,7 +12,7 @@ public class UserStateImpl implements UserState {
 
     @Override
     public String getUserId() {
-        return UserController.userId;
+        return LoginController.userId;
     }
 
     @Override

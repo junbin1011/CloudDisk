@@ -6,6 +6,7 @@ import com.cloud.disk.bundle.user.UserStateImpl;
 import com.cloud.disk.bundle.user.UserController;
 import com.cloud.disk.bundle.file.FileInfo;
 import com.cloud.disk.library.http.HttpUtils;
+import com.cloud.disk.platform.login.LoginController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class DynamicController {
         if (!UserController.isLogin) {
             return false;
         }
-        HttpUtils.post("http://dynamic", UserController.userId);
+        HttpUtils.post("http://dynamic", LoginController.userId);
         return true;
     }
 
