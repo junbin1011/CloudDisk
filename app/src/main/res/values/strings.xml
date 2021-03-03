@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">CloudDisk</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_dynamic_fragment">Hello dynamic fragment</string>
     <string name="hello_user_fragment">Hello user center fragment</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="tab_file">File</string>

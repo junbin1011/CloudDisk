@@ -1,25 +1,30 @@
 package com.cloud.disk.bundle.dynamic;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.cloud.disk.R;
-import com.cloud.disk.bundle.file.FileController;
+import androidx.fragment.app.Fragment;
+
 import com.cloud.disk.bundle.file.FileInfo;
-import com.cloud.disk.bundle.user.UserStateImpl;
+import com.cloud.disk.bundle.file.TransferFile;
+import com.cloud.dynamicbundle.R;
 
+import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class DynamicFragment extends Fragment {
 
-    DynamicController dynamicController = new DynamicController();
-    FileController fileController = new FileController(new UserStateImpl());
+    @Inject
+    DynamicController dynamicController;
     Button btnShare;
+    @Inject
+    TransferFile transferFile;
+
     public static DynamicFragment newInstance() {
         DynamicFragment fragment = new DynamicFragment();
         Bundle args = new Bundle();
@@ -31,7 +36,8 @@ public class DynamicFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dynamicController.getDynamicList();
-        FileInfo fileInfo = fileController.upload("/data/data/user.png");
+        //上传文件
+        FileInfo fileInfo = transferFile.upload("/data/data/user.png");
         dynamicController.post(new Dynamic(), fileInfo);
     }
 
@@ -39,7 +45,7 @@ public class DynamicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_dynamic, container, false);
-        btnShare=inflate.findViewById(R.id.btn_share);
+        btnShare = inflate.findViewById(R.id.btn_share);
         btnShare.setOnClickListener(v -> shareToWeiXin("hello world"));
         return inflate;
     }

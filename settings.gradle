@@ -1,3 +1,4 @@
+include ':dynamicBundle'
 include ':platform'
 include ':app'
 include ':library'
