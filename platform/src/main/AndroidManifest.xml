@@ -3,7 +3,7 @@
     package="com.cloud.platform">
 
     <application>
-        <activity android:name=".platform.login.LoginActivity" />
+        <activity android:name="com.cloud.disk.platform.login.LoginActivity" />
     </application>
 
 

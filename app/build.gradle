@@ -68,6 +68,7 @@ dependencies {
     implementation project(':platform')
     implementation project(':fileBundle')
     implementation project(':dynamicBundle')
+    implementation project(':userBundle')
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation "com.google.truth:truth:1.0.1"

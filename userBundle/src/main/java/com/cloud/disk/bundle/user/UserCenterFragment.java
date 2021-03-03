@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.cloud.disk.R;
+import com.cloud.userbundle.R;
 
 
 public class UserCenterFragment extends Fragment {
