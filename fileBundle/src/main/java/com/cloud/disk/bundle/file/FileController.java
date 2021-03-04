@@ -1,5 +1,7 @@
 package com.cloud.disk.bundle.file;
 
+import com.cloud.disk.api.file.FileInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 

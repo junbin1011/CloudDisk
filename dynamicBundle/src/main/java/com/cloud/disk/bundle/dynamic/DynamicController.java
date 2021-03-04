@@ -1,9 +1,9 @@
 package com.cloud.disk.bundle.dynamic;
 
 
-import com.cloud.disk.bundle.file.FileInfo;
-import com.cloud.disk.bundle.file.TransferFile;
-import com.cloud.disk.bundle.user.UserState;
+import com.cloud.disk.api.file.FileInfo;
+import com.cloud.disk.api.file.TransferFile;
+import com.cloud.disk.api.user.UserState;
 import com.cloud.disk.library.http.HttpUtils;
 import com.cloud.disk.platform.login.LoginController;
 

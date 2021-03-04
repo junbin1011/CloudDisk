@@ -1,6 +1,7 @@
 package com.cloud.disk;
 
 import com.tngtech.archunit.junit.AnalyzeClasses;
+import com.tngtech.archunit.junit.ArchIgnore;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.junit.ArchUnitRunner;
 import com.tngtech.archunit.lang.ArchRule;
@@ -16,6 +17,7 @@ public class ArchRuleTest {
     @ArchTest
     public static final ArchRule architecture_layer_should_has_right_dependency =layeredArchitecture()
             .layer("Library").definedBy("..cloud.disk.library..")
+            .layer("Api").definedBy("..cloud.disk.api..")
             .layer("PlatForm").definedBy("..cloud.disk.platform..")
             .layer("FileBundle").definedBy("..cloud.disk.bundle.file..")
             .layer("DynamicBundle").definedBy("..cloud.disk.bundle.dynamic..")
@@ -27,5 +29,6 @@ public class ArchRuleTest {
             .whereLayer("DynamicBundle").mayOnlyBeAccessedByLayers("App")
             .whereLayer("UserBundle").mayOnlyBeAccessedByLayers("App")
             .whereLayer("PlatForm").mayOnlyBeAccessedByLayers("App","AllBundle")
+            .whereLayer("Api").mayOnlyBeAccessedByLayers("App","AllBundle","PlatForm")
             .whereLayer("Library").mayOnlyBeAccessedByLayers("App","AllBundle","PlatForm");
 }

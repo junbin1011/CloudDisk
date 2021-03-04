@@ -1,5 +1,7 @@
 package com.cloud.disk.bundle.user;
 
+import com.cloud.disk.api.user.UserState;
+
 import dagger.Binds;
 import dagger.Module;
 import dagger.hilt.InstallIn;

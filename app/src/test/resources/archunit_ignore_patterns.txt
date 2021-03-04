@@ -1,0 +1,2 @@
+.*com.cloud.disk.SmokeTesting.*
+.*com.cloud.disk.DaggerSmokeTesting_*.*

@@ -10,7 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cloud.disk.R;
 import com.cloud.disk.app.adapter.SectionsPagerAdapter;
-import com.cloud.disk.bundle.user.UserState;
+import com.cloud.disk.api.user.UserState;
 import com.cloud.disk.platform.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;

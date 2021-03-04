@@ -1,5 +1,6 @@
 package com.cloud.disk.bundle.user;
 
+import com.cloud.disk.api.user.UserState;
 import com.cloud.disk.platform.login.LoginController;
 
 import javax.inject.Inject;

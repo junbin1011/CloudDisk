@@ -1,4 +1,4 @@
-package com.cloud.disk.bundle.user;
+package com.cloud.disk.api.user;
 
 public interface UserState {
     String getUserId();

@@ -1,6 +1,6 @@
 package com.cloud.disk.bundle.file;
 
-import com.cloud.disk.bundle.user.UserState;
+import com.cloud.disk.api.file.TransferFile;
 
 import dagger.Binds;
 import dagger.Module;

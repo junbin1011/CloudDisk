@@ -1,4 +1,4 @@
-package com.cloud.disk.bundle.file;
+package com.cloud.disk.api.file;
 
 public class FileInfo {
     public String fileName;
