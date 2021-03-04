@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-@Route(path = "/bundle/file")
+@Route(path = "/fileBundle/file")
 @AndroidEntryPoint
 public class FileFragment extends Fragment {
 

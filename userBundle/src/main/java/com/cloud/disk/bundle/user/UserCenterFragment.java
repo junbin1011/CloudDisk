@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cloud.userbundle.R;
 
-
+@Route(path = "/userBundle/user")
 public class UserCenterFragment extends Fragment {
 
     UserController userController = new UserController();

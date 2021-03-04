@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cloud.disk.bundle.file.FileInfo;
 import com.cloud.disk.bundle.file.TransferFile;
 import com.cloud.dynamicbundle.R;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+@Route(path = "/dynamicBundle/dynamic")
 @AndroidEntryPoint
 public class DynamicFragment extends Fragment {
 
