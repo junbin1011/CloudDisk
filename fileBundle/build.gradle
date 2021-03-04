@@ -3,7 +3,6 @@ plugins {
 }
 
 apply plugin: 'com.alibaba.arouter'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
