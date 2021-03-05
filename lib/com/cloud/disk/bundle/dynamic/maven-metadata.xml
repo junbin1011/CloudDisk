@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-  <groupId>com.cloud.disk</groupId>
-  <artifactId>platform</artifactId>
+  <groupId>com.cloud.disk.bundle</groupId>
+  <artifactId>dynamic</artifactId>
   <versioning>
     <release>1.0.0</release>
     <versions>
       <version>1.0.0</version>
     </versions>
-    <lastUpdated>20210305021059</lastUpdated>
+    <lastUpdated>20210305021057</lastUpdated>
   </versioning>
 </metadata>

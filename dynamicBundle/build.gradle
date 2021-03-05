@@ -4,6 +4,7 @@ plugins {
 
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.alibaba.arouter'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 30
@@ -38,6 +39,18 @@ android {
 }
 hilt {
     enableTransformForLocalTests = true
+}
+
+group = 'com.cloud.disk.bundle'
+archivesBaseName = 'dynamic'
+version = '1.0.0'
+
+repositories.mavenCentral()
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'file:'+ rootDir.getPath()+'/lib')
+    }
 }
 
 dependencies {
