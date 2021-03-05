@@ -62,7 +62,8 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.5.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.1'
 
-    implementation project(':library')
+    implementation 'com.cloud.disk:library:1.0.0'
+
     implementation project(':api')
     implementation project(':platform')
     implementation project(':fileBundle')
