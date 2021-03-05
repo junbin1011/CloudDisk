@@ -51,7 +51,7 @@ dependencies {
 
     implementation project(':api')
     implementation 'com.cloud.disk:library:1.0.0'
-    implementation project(':platform')
+    implementation 'com.cloud.disk:platform:1.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
