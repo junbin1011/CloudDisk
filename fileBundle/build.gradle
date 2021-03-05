@@ -46,7 +46,7 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.5.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.1'
 
-    implementation project(':api')
+    implementation 'com.cloud.disk:api:1.0.0'
     implementation 'com.cloud.disk:library:1.0.0'
 
     testImplementation 'junit:junit:4.+'

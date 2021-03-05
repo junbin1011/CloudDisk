@@ -64,7 +64,7 @@ dependencies {
 
     implementation 'com.cloud.disk:library:1.0.0'
 
-    implementation project(':api')
+    implementation 'com.cloud.disk:api:1.0.0'
     implementation 'com.cloud.disk:platform:1.0.0'
     implementation project(':fileBundle')
     implementation project(':dynamicBundle')

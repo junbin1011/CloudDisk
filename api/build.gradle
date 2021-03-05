@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.library'
 }
-
+apply plugin: 'maven'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -25,6 +25,18 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+group = 'com.cloud.disk'
+archivesBaseName = 'api'
+version = '1.0.0'
+
+repositories.mavenCentral()
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'file:'+ rootDir.getPath()+'/lib')
     }
 }
 
