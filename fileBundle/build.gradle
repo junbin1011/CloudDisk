@@ -4,6 +4,7 @@ plugins {
 
 apply plugin: 'com.alibaba.arouter'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 30
@@ -34,6 +35,17 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+group = 'com.cloud.disk.bundle'
+archivesBaseName = 'file'
+version = '1.0.0'
+
+repositories.mavenCentral()
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'file:'+ rootDir.getPath()+'/lib')
     }
 }
 
