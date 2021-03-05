@@ -68,8 +68,7 @@ dependencies {
 
     implementation 'com.cloud.disk.bundle:file:1.0.0'
     implementation 'com.cloud.disk.bundle:dynamic:1.0.0'
-
-    implementation project(':userBundle')
+    implementation 'com.cloud.disk.bundle:user:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation "com.google.truth:truth:1.0.1"
