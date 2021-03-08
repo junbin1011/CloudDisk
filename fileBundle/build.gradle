@@ -1,5 +1,10 @@
-plugins {
-    id 'com.android.library'
+def isApp = false
+if (isApp) {
+    //可运行
+    apply plugin: 'com.android.application'
+} else {
+    //作为库
+    apply plugin: 'com.android.library'
 }
 
 apply plugin: 'com.alibaba.arouter'
@@ -11,6 +16,9 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
+        if (isApp) {
+            applicationId 'com.cloud.filebundle'
+        }
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
