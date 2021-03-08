@@ -1,3 +1,4 @@
+include ':dynamicDebug'
 include ':dynamicBundle'
 include ':userBundle'
 include ':platform'
