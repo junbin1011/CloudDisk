@@ -68,18 +68,6 @@ public class SmokeTesting {
     }
 
     @Test
-    public void show_show_file_ui_when_click_tab_file() {
-        //given
-        ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
-        scenario.onActivity(activity -> {
-            //when
-            onView(withText(R.string.tab_file)).perform(click());
-            //then
-            onView(withText("Hello file fragment")).check(matches(isDisplayed()));
-        });
-    }
-
-    @Test
     public void show_show_dynamic_ui_when_click_tab_dynamic() {
         //given
         ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);

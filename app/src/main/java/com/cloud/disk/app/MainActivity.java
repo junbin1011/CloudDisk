@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         fragments.add((Fragment) ARouter.getInstance().build("/userBundle/user").navigation());
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager(), fragments);
         ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setOffscreenPageLimit(fragments.size());
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
