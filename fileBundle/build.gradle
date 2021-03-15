@@ -81,6 +81,8 @@ dependencies {
     annotationProcessor "com.google.dagger:hilt-android-compiler:2.28-alpha"
     implementation 'com.alibaba:arouter-api:1.5.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.1'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
 
     implementation 'com.cloud.disk:api:1.0.0'
     implementation 'com.cloud.disk:library:1.0.0'

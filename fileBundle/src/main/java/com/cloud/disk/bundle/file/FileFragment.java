@@ -1,16 +1,11 @@
 package com.cloud.disk.bundle.file;
 
-import android.accounts.NetworkErrorException;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,21 +17,17 @@ import com.cloud.filebundle.R;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import dagger.hilt.android.AndroidEntryPoint;
 
 @Route(path = "/fileBundle/file")
 @AndroidEntryPoint
-public class FileFragment extends Fragment {
-
-    @Inject
-    FileController fileController;
+public class FileFragment extends Fragment implements FileListContract.View {
 
     private RecyclerView fileListRecycleView;
     private TextView tvMessage;
+    private FileListContract.FilePresenter filePresenter = new FilePresenterImpl(new FileRemoteDataSource(), this);
 
-    public static FileFragment newInstance() {
+    public static FileListContract.View newInstance() {
         FileFragment fragment = new FileFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -50,60 +41,35 @@ public class FileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_file, container, false);
         fileListRecycleView = view.findViewById(R.id.file_list);
         tvMessage = view.findViewById(R.id.tv_message);
-        tvMessage.setOnClickListener(v -> getFileList());
+        tvMessage.setOnClickListener(v -> filePresenter.getFileList());
+        filePresenter.getFileList();
         return view;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getFileList();
+    public void showFileList(List<FileInfo> fileList) {
+        showTip(false);
+        FileListAdapter fileListAdapter = new FileListAdapter(fileList, getActivity());
+        fileListRecycleView.addItemDecoration(new DividerItemDecoration(
+                getActivity(), DividerItemDecoration.VERTICAL));
+        //设置布局显示格式
+        fileListRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        fileListRecycleView.setAdapter(fileListAdapter);
     }
 
-    @VisibleForTesting
-    protected void getFileList() {
-        new Thread(() -> {
-            Message message = new Message();
-            try {
-                List<FileInfo> infoList = fileController.getFileList();
-                message.what = 1;
-                message.obj = infoList;
-            } catch (NetworkErrorException e) {
-                message.what = 0;
-                message.obj = "NetworkErrorException";
-                e.printStackTrace();
-            }
-            mHandler.sendMessage(message);
-        }).start();
+    @Override
+    public void showNetWorkException(String errorMessage) {
+        showTip(true);
+        //显示异常提醒数据
+        tvMessage.setText(errorMessage);
     }
 
-    Handler mHandler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(@NonNull Message msg) {
-            if (msg.what == 1) {
-                showTip(false);
-                //显示网络数据
-                List<FileInfo> infoList = (List<FileInfo>) msg.obj;
-                if (msg.obj == null) {
-                    showTip(true);
-                    //显示空数据
-                    tvMessage.setText("empty data");
-                } else {
-                    FileListAdapter fileListAdapter = new FileListAdapter(infoList, getActivity());
-                    fileListRecycleView.addItemDecoration(new DividerItemDecoration(
-                            getActivity(), DividerItemDecoration.VERTICAL));
-                    //设置布局显示格式
-                    fileListRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    fileListRecycleView.setAdapter(fileListAdapter);
-                }
-            } else if (msg.what == 0) {
-                showTip(true);
-                //显示异常提醒数据
-                tvMessage.setText(msg.obj.toString());
-            }
-            return false;
-        }
-    });
+    @Override
+    public void showEmptyData() {
+        showTip(true);
+        //显示空数据
+        tvMessage.setText("empty data");
+    }
 
     public void showTip(boolean show) {
         if (show) {

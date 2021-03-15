@@ -1,7 +1,5 @@
 package com.cloud.disk.bundle.file;
 
-import android.os.Message;
-
 import com.cloud.disk.api.file.FileInfo;
 
 import org.robolectric.annotation.Implementation;
@@ -10,11 +8,12 @@ import org.robolectric.annotation.RealObject;
 
 import java.util.ArrayList;
 
-@Implements(FileFragment.class)
+@Implements(FilePresenterImpl.class)
 public class ShadowFileFragment {
 
     @RealObject
-    public FileFragment fileFragment;
+    public FilePresenterImpl filePresenterImpl;
+    private FileListContract.View mFileView;
 
     enum State {
         SUCCESS,
@@ -25,22 +24,17 @@ public class ShadowFileFragment {
     public static State state = State.SUCCESS;
 
     @Implementation
-    protected void getFileList() {
-        System.out.println("shadow .... .....");
-        Message message = new Message();
+    public void getFileList() {
+        mFileView = filePresenterImpl.mFileView;
         if (state == State.SUCCESS) {
             ArrayList<FileInfo> infoList = new ArrayList<>();
             infoList.add(new FileInfo("遗留代码重构.pdf", 102400));
             infoList.add(new FileInfo("系统组件化.pdf", 9900));
-            message.what = 1;
-            message.obj = infoList;
+            mFileView.showFileList(infoList);
         } else if (state == State.ERROR) {
-            message.what = 0;
-            message.obj = "NetworkErrorException";
+            mFileView.showNetWorkException("NetworkErrorException");
         } else if (state == State.EMPTY) {
-            message.what = 1;
-            message.obj = null;
+            mFileView.showEmptyData();
         }
-        fileFragment.mHandler.sendMessage(message);
     }
 }
