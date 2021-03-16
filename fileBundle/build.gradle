@@ -1,4 +1,4 @@
-def isApp = true
+def isApp = false
 if (isApp) {
     //可运行
     apply plugin: 'com.android.application'
@@ -88,6 +88,7 @@ dependencies {
     implementation 'com.cloud.disk:library:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
+    testImplementation "org.mockito:mockito-core:2.8.9"
     testImplementation "com.google.truth:truth:1.0.1"
     testImplementation 'com.tngtech.archunit:archunit-junit4:0.15.0'
     testImplementation 'org.robolectric:robolectric:4.5.1'
