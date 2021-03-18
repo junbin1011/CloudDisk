@@ -17,25 +17,24 @@ class ShadowDynamicFragment {
         SUCCESS, ERROR, EMPTY
     }
 
-    @get:Implementation
-    val dynamicList: Unit
-        get() {
-            val message = Message()
-            if (state == State.SUCCESS) {
-                val dynamicList = ArrayList<Dynamic>()
-                dynamicList.add(Dynamic(1, "今天天气真不错！", 1615963675000L))
-                dynamicList.add(Dynamic(2, "这个连续剧值得追！", 1615963688000L))
-                message.what = 1
-                message.obj = dynamicList
-            } else if (state == State.ERROR) {
-                message.what = 0
-                message.obj = "NetworkErrorException"
-            } else if (state == State.EMPTY) {
-                message.what = 1
-                message.obj = null
-            }
-            dynamicFragment!!.mHandler.sendMessage(message)
+    @Implementation
+    fun getDynamicList() {
+        val message = Message()
+        if (state == State.SUCCESS) {
+            val dynamicList = ArrayList<Dynamic>()
+            dynamicList.add(Dynamic(1, "今天天气真不错！", 1615963675000L))
+            dynamicList.add(Dynamic(2, "这个连续剧值得追！", 1615963688000L))
+            message.what = 1
+            message.obj = dynamicList
+        } else if (state == State.ERROR) {
+            message.what = 0
+            message.obj = "NetworkErrorException"
+        } else if (state == State.EMPTY) {
+            message.what = 1
+            message.obj = null
         }
+        dynamicFragment!!.mHandler.sendMessage(message)
+    }
 
     companion object {
         var state = State.SUCCESS
