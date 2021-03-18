@@ -88,7 +88,7 @@ public class DynamicFragment extends Fragment {
         }).start();
     }
 
-    Handler mHandler = new Handler(new Handler.Callback() {
+    public Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
             if (msg.what == 1) {
