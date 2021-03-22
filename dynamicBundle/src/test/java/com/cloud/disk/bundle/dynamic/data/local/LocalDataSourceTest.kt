@@ -5,16 +5,37 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.cloud.disk.bundle.dynamic.Dynamic
 import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.*
 
+@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @MediumTest
 class LocalDataSourceTest {
+    private val testDispatcher = TestCoroutineDispatcher()
+
+    @Before
+    fun setUp() {
+        Dispatchers.setMain(testDispatcher)
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+        testDispatcher.cleanupTestCoroutines()
+    }
 
     @Test
-    fun `should get dynamic is empty when database has not data`() {
+    fun `should get dynamic is empty when database has not data`() = runBlocking {
         //given
         val localDataSource = LocalDataSource(ApplicationProvider.getApplicationContext())
         //when
@@ -24,7 +45,7 @@ class LocalDataSourceTest {
     }
 
     @Test
-    fun `should get dynamic success when database has data`() {
+    fun `should get dynamic success when database has data`() = runBlocking {
         //given
         val localDataSource = LocalDataSource(ApplicationProvider.getApplicationContext())
         localDataSource.saveDynamicToCache(getMockData())

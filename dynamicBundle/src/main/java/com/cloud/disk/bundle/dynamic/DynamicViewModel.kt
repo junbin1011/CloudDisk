@@ -25,13 +25,13 @@ class DynamicViewModel @Inject internal constructor(
             try {
                 val dynamicList = dynamicRepository.getDynamicList()
                 dynamicListLiveData.value = dynamicList
-                saveDynamicToCache(dynamicList)
+                dynamicRepository.saveDynamicToCache(dynamicList)
             } catch (e: NetWorkErrorException) {
-                val dynamicCacheList = getDynamicListFromCache()
-                if (dynamicCacheList.isNotEmpty()) {
-                    dynamicListLiveData.value = dynamicCacheList
-                } else {
+                val dynamicCacheList = dynamicRepository.getDynamicListFromCache()
+                if (dynamicCacheList.isNullOrEmpty()) {
                     errorMessageLiveData.value = "NetWorkErrorException"
+                } else {
+                    dynamicListLiveData.value = dynamicCacheList
                 }
             }
         }
@@ -42,14 +42,6 @@ class DynamicViewModel @Inject internal constructor(
         //上传文件
         val fileInfo = transferFile.upload("/data/data/user.png")
         fileInfo?.let { dynamicRepository.post(Dynamic(0, "第一个动态", System.currentTimeMillis()), it) }
-    }
-
-    private fun getDynamicListFromCache(): List<Dynamic> {
-        return dynamicRepository.getDynamicListFromCache()
-    }
-
-    private fun saveDynamicToCache(dynamicList: List<Dynamic>) {
-        dynamicRepository.saveDynamicToCache(dynamicList)
     }
 
 }

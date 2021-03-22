@@ -56,11 +56,11 @@ class DynamicRepository @Inject constructor(
     }
 
     //判断游标是否为空
-    fun getDynamicListFromCache(): List<Dynamic> {
+    suspend fun getDynamicListFromCache(): List<Dynamic> {
         return dataSource.getDynamicListFromCache()
     }
 
-    fun saveDynamicToCache(dynamicList: List<Dynamic>?) {
+    suspend fun saveDynamicToCache(dynamicList: List<Dynamic>?) {
         dataSource.saveDynamicToCache(dynamicList)
     }
 }

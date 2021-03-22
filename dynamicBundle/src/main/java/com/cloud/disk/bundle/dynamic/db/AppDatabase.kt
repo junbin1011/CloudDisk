@@ -6,5 +6,5 @@ import com.cloud.disk.bundle.dynamic.Dynamic
 
 @Database(entities = arrayOf(Dynamic::class), version = 1)
 abstract class AppDatabase : RoomDatabase() {
-
+    abstract fun dynamicDao(): DynamicDao
 }
