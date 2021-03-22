@@ -2,7 +2,10 @@ package com.cloud.disk.bundle.dynamic.data.local
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import androidx.room.Room
 import com.cloud.disk.bundle.dynamic.Dynamic
+import com.cloud.disk.bundle.dynamic.db.AppDatabase
 import com.cloud.disk.bundle.dynamic.db.DataBaseHelper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
@@ -11,11 +14,17 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor(
         @ApplicationContext private var mContext: Context) : DataSource {
 
+    val db = Room.databaseBuilder(
+            mContext,
+            AppDatabase::class.java, "dynamic.db"
+    ).build()
+
+
     //判断游标是否为空
     override fun getDynamicListFromCache(): List<Dynamic> {
         val dynamicList: MutableList<Dynamic> = ArrayList()
-        val dataBaseHelper = DataBaseHelper(mContext)
-        val c = dataBaseHelper.writableDatabase.query(DataBaseHelper.dynamic_info, null, null, null, null, null, null)
+        val dataBaseHelper = db.openHelper
+        val c = dataBaseHelper.writableDatabase.query("SELECT * FROM dynamic_info")
         if (c.moveToFirst()) { //判断游标是否为空
             for (i in 0 until c.count) {
                 c.move(i) //移动到指定记录
@@ -29,7 +38,7 @@ class LocalDataSource @Inject constructor(
     }
 
     override fun saveDynamicToCache(dynamicList: List<Dynamic>?) {
-        val dataBaseHelper = DataBaseHelper(mContext)
+        val dataBaseHelper = db.openHelper
         dynamicList?.let {
             dataBaseHelper.writableDatabase.delete(DataBaseHelper.dynamic_info, null, null)
             for ((id, content, date) in dynamicList) {
@@ -37,7 +46,7 @@ class LocalDataSource @Inject constructor(
                 cv.put(DataBaseHelper.id, id)
                 cv.put(DataBaseHelper.content, content)
                 cv.put(DataBaseHelper.date, date)
-                dataBaseHelper.writableDatabase.insert(DataBaseHelper.dynamic_info, null, cv)
+                dataBaseHelper.writableDatabase.insert(DataBaseHelper.dynamic_info, SQLiteDatabase.CONFLICT_REPLACE, cv)
             }
         }
     }
