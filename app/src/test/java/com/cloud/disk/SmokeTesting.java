@@ -31,7 +31,6 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -64,18 +63,6 @@ public class SmokeTesting {
             assertThat(fragments.get(0) instanceof FileFragment);
             assertThat(fragments.get(1) instanceof DynamicFragment);
             assertThat(fragments.get(2) instanceof UserCenterFragment);
-        });
-    }
-
-    @Test
-    public void show_show_dynamic_ui_when_click_tab_dynamic() {
-        //given
-        ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class);
-        scenario.onActivity(activity -> {
-            //when
-            onView(withText(R.string.tab_dynamic)).perform(click());
-            //then
-            onView(withText("Hello dynamic fragment")).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
         });
     }
 

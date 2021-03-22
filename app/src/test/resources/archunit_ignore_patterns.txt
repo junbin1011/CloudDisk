@@ -1,2 +1,3 @@
 .*com.cloud.disk.SmokeTesting.*
 .*com.cloud.disk.DaggerSmokeTesting_*.*
+.*com.cloud.*.databinding.*ItemBinding.*
