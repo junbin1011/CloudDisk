@@ -18,7 +18,7 @@ import org.robolectric.annotation.Config
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 @HiltAndroidTest
-@Config(application = HiltTestApplication::class, shadows = [ShadowDynamicFragment::class, ShadowDynamicController::class])
+@Config(application = HiltTestApplication::class, shadows = [ShadowDynamicViewModel::class])
 class DynamicFragmentTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
@@ -26,7 +26,7 @@ class DynamicFragmentTest {
     @Test
     fun `show show dynamic list when get success`() {
         //given
-        ShadowDynamicFragment.state = ShadowDynamicFragment.State.SUCCESS
+        ShadowDynamicViewModel.state = ShadowDynamicViewModel.State.SUCCESS
         //when
         val scenario: ActivityScenario<DebugActivity> = ActivityScenario.launch(DebugActivity::class.java)
         scenario.onActivity {
@@ -41,8 +41,7 @@ class DynamicFragmentTest {
     @Test
     fun `show show dynamic list when net work exception but have cache`() {
         //given
-        ShadowDynamicFragment.state = ShadowDynamicFragment.State.ERROR
-        ShadowDynamicController.state = ShadowDynamicController.State.DATA
+        ShadowDynamicViewModel.state = ShadowDynamicViewModel.State.CACHE
         //when
         val scenario: ActivityScenario<DebugActivity> = ActivityScenario.launch(DebugActivity::class.java)
         scenario.onActivity {
@@ -57,8 +56,7 @@ class DynamicFragmentTest {
     @Test
     fun `show show error tip when net work exception and not have cache`() {
         //given
-        ShadowDynamicFragment.state = ShadowDynamicFragment.State.ERROR
-        ShadowDynamicController.state = ShadowDynamicController.State.EMPTY
+        ShadowDynamicViewModel.state = ShadowDynamicViewModel.State.ERROR
         //when
         val scenario: ActivityScenario<DebugActivity> = ActivityScenario.launch(DebugActivity::class.java)
         scenario.onActivity {
@@ -70,7 +68,7 @@ class DynamicFragmentTest {
     @Test
     fun `show show empty tip when not has data`() {
         //given
-        ShadowDynamicFragment.state = ShadowDynamicFragment.State.EMPTY
+        ShadowDynamicViewModel.state = ShadowDynamicViewModel.State.EMPTY
         //when
         val scenario: ActivityScenario<DebugActivity> = ActivityScenario.launch(DebugActivity::class.java)
         scenario.onActivity {

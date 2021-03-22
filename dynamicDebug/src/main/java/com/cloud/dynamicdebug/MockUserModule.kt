@@ -4,10 +4,10 @@ import com.cloud.disk.api.user.UserState
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ActivityComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class MockUserModule {
     @Binds
     abstract fun bindUserState(userStateImpl: MockUserStateImpl): UserState?
