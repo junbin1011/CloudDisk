@@ -1,34 +1,34 @@
 package com.cloud.disk.bundle.dynamic
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.cloud.disk.bundle.dynamic.util.DateUtil.getDateToString
 import com.cloud.dynamicbundle.R
+import com.cloud.dynamicbundle.databinding.DynamicListItemBinding
 
-class DynamicListAdapter(var infoList: List<Dynamic>, var context: Context) : RecyclerView.Adapter<DynamicListAdapter.ViewHolder>() {
+class DynamicListAdapter() : ListAdapter<Dynamic, DynamicListAdapter.DynamicVH>(DynamicDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.dynamic_list_item, parent, false)
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DynamicVH {
+        return DynamicVH(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.dynamic_list_item, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvName.text = infoList[position].content
-        holder.tvSize.text = getDateToString(infoList[position].date)
+    override fun onBindViewHolder(holder: DynamicVH, position: Int) {
+        holder.binding.dynamic = getItem(position)
+        holder.binding.executePendingBindings()
     }
 
-    override fun getItemCount(): Int {
-        return infoList.size
+    class DynamicVH(val binding: DynamicListItemBinding) : RecyclerView.ViewHolder(binding.root)
+
+    private class DynamicDiffCallback : DiffUtil.ItemCallback<Dynamic>() {
+        override fun areItemsTheSame(oldItem: Dynamic, newItem: Dynamic): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Dynamic, newItem: Dynamic): Boolean {
+            return oldItem == newItem
+        }
     }
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tvName: TextView = itemView.findViewById(R.id.tv_content)
-        var tvSize: TextView = itemView.findViewById(R.id.tv_date)
-    }
-
-
 }

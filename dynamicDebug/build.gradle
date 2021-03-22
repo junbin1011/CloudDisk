@@ -40,6 +40,9 @@ android {
             includeAndroidResources = true
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 hilt {
