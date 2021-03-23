@@ -52,6 +52,10 @@ android {
             includeAndroidResources = true
         }
     }
+
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
 }
 
 hilt {
