@@ -1,0 +1,39 @@
+apply plugin: 'groovy'
+
+sourceSets {
+    main {
+        groovy {
+            srcDir 'src/main/groovy'
+        }
+
+        java {
+            srcDir "src/main/java"
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+dependencies {
+    //gradle sdk
+    implementation gradleApi()
+    //groovy sdk
+    implementation localGroovy()
+}
+
+//以下内容主要用于发布插件
+apply plugin: 'maven'
+repositories {
+    mavenCentral()
+}
+group = 'com.cloud.disk.plugin'
+archivesBaseName = 'com.cloud.disk.plugin.BasePlugin'
+version = '1.0.0'
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'file:'+ rootDir.getPath()+'/lib')
+    }
+}
